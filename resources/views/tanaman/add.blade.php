@@ -68,21 +68,17 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        var map = L.map('map').setView([-0.08995098308488562, 114.86516263573411], 13);
-
         const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 17,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        }).addTo(map);
+        });
 
-        // var positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-        //     attribution: '©CartoDB'
-        // }).addTo(map);
+        // var map = L.map('map').setView([-0.08995098308488562, 114.86516263573411], 13);
 
-        // var positronLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
-        //     attribution: '©CartoDB',
-        //     pane: 'labels'
-        // }).addTo(map);
+        var map = L.map('map', {
+            center: [-0.08995098308488562, 114.86516263573411],
+            zoom: 13,
+            layers: [osm]
+        });
 
         var curLocation = [-0.08995098308488562, 114.86516263573411];
         map.attributionControl.setPrefix(false);

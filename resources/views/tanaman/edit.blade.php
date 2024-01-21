@@ -71,21 +71,16 @@
 
     <script>
 
-        var map = L.map('map').setView([{{ $data->kordinate }}], 13);
-
-        const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 20,
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        }).addTo(map);
+        });
 
-        // var positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
-        //     attribution: '©CartoDB'
-        // }).addTo(map);
 
-        // var positronLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
-        //     attribution: '©CartoDB',
-        //     pane: 'labels'
-        // }).addTo(map);
+        var map = L.map('map', {
+            center: [-0.08995098308488562, 114.86516263573411],
+            zoom: 13,
+            layers: [osm]
+        });
 
         var curLocation = [{{ $data->kordinate }}];
         map.attributionControl.setPrefix(false);
@@ -113,8 +108,6 @@
                 click: zoomToFeature
             });
         }
-
-
 
         marker.on('dragend', function(event) {
             var position = marker.getLatLng();

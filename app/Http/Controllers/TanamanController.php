@@ -17,7 +17,7 @@ class TanamanController extends Controller
      */
     public function index()
     {
-        $data = Tanaman::with('map')->get();
+        $data = Tanaman::with('area')->get();
         return view('tanaman.index', ['data' => $data]);
     }
 

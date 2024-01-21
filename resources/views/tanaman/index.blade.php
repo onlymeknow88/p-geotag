@@ -36,7 +36,7 @@
         @foreach ($data as $item)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->map['name'] }}</td>
+                <td>{{ $item->area['name'] }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->nama_ilmiah }}</td>
                 <td>{{ $item->tinggi_maks }}</td>
