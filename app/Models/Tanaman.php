@@ -11,8 +11,19 @@ class Tanaman extends Model
 
     protected $table = 'tanaman';
 
-    public function map()
+    protected $guarded = [];
+
+    protected $appends = [
+        'ImageUrl'
+    ];
+
+    public function area()
     {
-        return $this->belongsTo(Map::class);
+        return $this->belongsTo(Map::class,'map_id','id');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return url('storage/tanaman/' . $this->image);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Map extends Model
 {
@@ -11,6 +12,15 @@ class Map extends Model
 
     protected $table = 'map';
 
-    protected $fillable = ['name', 'geoJson','jenis_pohon'];
+    protected $appends = ['URLgeoJson'];
+
+    protected $guarded = [];
+
+    protected $fillable = ['name', 'geoJson'];
+
+    public function getURLgeoJsonAttribute()
+    {
+        return Storage::disk('public')->url('/map/geojson/'.$this->attributes['geoJson']);
+    }
 
 }

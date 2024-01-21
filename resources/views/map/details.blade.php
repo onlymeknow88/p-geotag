@@ -53,13 +53,12 @@
             box-shadow: none;
         }
 
-
-        /* table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        } */
+        .pohon_name {
+            cursor: pointer;
+        }
+        .pohon_name:hover {
+            color: blue;
+        }
     </style>
 </head>
 
@@ -78,7 +77,7 @@
                 <td style="border:1px solid black"><input type="checkbox" id="pohon_id{{ $item->id }}"
                         value="{{ $item->id }}" checked>
                 </td>
-                <td style="border:1px solid black"><span id="pohon_name{{ $item->id }}">{{ $item->name }}</span>
+                <td style="border:1px solid black"><span class="pohon_name" id="pohon_name{{ $item->id }}">{{ $item->name }}</span>
                 </td>
                 <td style="border:1px solid black">{{ $item->nama_ilmiah }}</td>
                 <td style="border:1px solid black">{{ $item->kordinate }}</td>
@@ -133,6 +132,7 @@
             //click pohon_name zoom to marker
             $('#pohon_name{{ $data->id }}').click(function() {
                 var pohon_id = $(this).val();
+                $('#pohon_id{{ $data->id }}').prop('checked', true);
                 map.addLayer(pohon{{ $data->id }});
                 map.setView([{{ $data->kordinate }}], 18);
             });
