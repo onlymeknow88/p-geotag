@@ -15,10 +15,10 @@ class AuthController extends Controller
     {
         try {
             // Validate request
-            // $request->validate([
-            //     'email' => ['required'],
-            //     'password' => ['required'],
-            // ]);
+            $request->validate([
+                'email' => ['required'],
+                'password' => ['required'],
+            ]);
 
             // Find user by email
             $user = User::where('email', $request->email)->firstOrFail();
@@ -36,7 +36,10 @@ class AuthController extends Controller
                 'user' => $user
             ], 'Login success');
         } catch (Exception $e) {
-            return ResponseFormatter::error($e->getMessage());
+            return ResponseFormatter::error([
+                'message' => 'Something went wrong',
+                'error' => $e,
+            ],'Authentication Failed', 500);
         }
     }
 }
